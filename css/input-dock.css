@@ -17,40 +17,48 @@
   z-index: 30;
 }
 
-/* Model Selector & Utility Row */
-.dock-top-bar {
+/* Model Selector Row */
+.dock-model-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
 }
 
-/* Model Selector Pill (Blue dot + Model name + Chevron) */
+/* Model Selector Pill (Squircle icon + Model name + Chevron) */
 .model-pill-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  background-color: var(--brand-light);
-  border: 1px solid rgba(79, 70, 229, 0.2);
+  gap: 8px;
+  padding: 4px 12px 4px 6px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-primary);
   transition: all 0.15s ease;
+  cursor: pointer;
 }
 
 .model-pill-btn:hover {
-  background-color: #e0e7ff;
-  border-color: rgba(79, 70, 229, 0.4);
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-medium);
 }
 
-.model-pill-btn .indicator-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: var(--radius-full);
-  background-color: #3b82f6;
-  box-shadow: 0 0 6px rgba(59, 130, 246, 0.6);
+.model-logo-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #6b21a8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.model-logo-badge svg {
+  width: 14px;
+  height: 14px;
 }
 
 .model-pill-btn .chevron-icon {
@@ -63,31 +71,35 @@
 .dock-tools-row {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 16px;
+  padding: 2px 4px;
 }
 
 .btn-dock-tool {
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-md);
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
   color: var(--text-secondary);
   position: relative;
   transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-dock-tool svg {
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
+  stroke-width: 1.8;
 }
 
 .btn-dock-tool:hover {
-  color: var(--brand-primary);
-  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transform: translateY(-1px);
 }
 
 .btn-dock-tool.active {
   color: var(--brand-primary);
-  background-color: var(--brand-light);
 }
 
 /* Context Attached Chips (e.g. Current Tab Context) */
@@ -126,36 +138,48 @@
   background-color: rgba(239, 68, 68, 0.1);
 }
 
-/* Main Input Wrapper Box */
+/* Main Input Wrapper Box (Thick Rounded) */
 .input-box-wrapper {
   display: flex;
   flex-direction: column;
   background-color: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 8px 10px 8px 12px;
+  border: 2px solid #1f2b42;
+  border-radius: 20px;
+  padding: 12px 14px 10px 14px;
   transition: all 0.18s ease;
 }
 
-.input-box-wrapper:focus-within {
-  border-color: var(--brand-primary);
-  background-color: var(--bg-primary);
-  box-shadow: 0 0 0 2px var(--brand-glow);
+.input-box-wrapper:hover {
+  border-color: #2e3e5e;
 }
 
-/* Auto-resizing Textarea */
+.input-box-wrapper:focus-within {
+  border-color: #6366f1;
+  background-color: #0c111e;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+/* Auto-resizing Textarea (No inner outline or border) */
 .chat-textarea {
   width: 100%;
-  border: none;
+  border: none !important;
+  outline: none !important;
   background: transparent;
   resize: none;
-  font-size: 13px;
+  font-size: 13.5px;
   line-height: 1.45;
   color: var(--text-primary);
-  min-height: 38px;
+  min-height: 40px;
   max-height: 130px;
-  padding: 2px 0 6px 0;
-  outline: none;
+  padding: 2px 2px 6px 2px;
+  box-shadow: none !important;
+}
+
+.chat-textarea:focus,
+.chat-textarea:focus-visible {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .chat-textarea::placeholder {
@@ -169,19 +193,18 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding-top: 4px;
-  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  padding-top: 6px;
 }
 
 /* Web Search Toggle Pill */
 .btn-web-search-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 4px 9px;
+  gap: 6px;
+  padding: 5px 12px;
   border-radius: var(--radius-full);
-  border: 1px solid var(--border-subtle);
-  background-color: var(--bg-primary);
+  border: 1px solid #1e3558;
+  background-color: #0f1b32;
   color: var(--text-secondary);
   font-size: 11.5px;
   font-weight: 500;
@@ -189,19 +212,21 @@
 }
 
 .btn-web-search-toggle svg {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
+  color: var(--text-secondary);
 }
 
 .btn-web-search-toggle:hover {
-  background-color: var(--bg-tertiary);
+  background-color: #17284a;
   color: var(--text-primary);
+  border-color: #2b4c7d;
 }
 
 .btn-web-search-toggle.active {
-  background-color: #ecfdf5;
+  background-color: rgba(16, 185, 129, 0.15);
   border-color: #10b981;
-  color: #059669;
+  color: #34d399;
 }
 
 /* Keyboard Hint */
@@ -214,30 +239,30 @@
 
 /* Circular Send Button */
 .btn-send-message {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: var(--radius-full);
-  background-color: var(--border-medium);
+  background: #4f46e5;
   color: #ffffff;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+  cursor: pointer;
   transition: all 0.18s ease;
 }
 
 .btn-send-message svg {
   width: 15px;
   height: 15px;
-  transform: translateX(1px);
+  transform: translate(1px, -1px);
 }
 
-.btn-send-message.ready {
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.35);
-  cursor: pointer;
-}
-
-.btn-send-message.ready:hover {
-  background: linear-gradient(135deg, #4f46e5, #4338ca);
+.btn-send-message:hover {
+  background: #4338ca;
   transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.5);
 }
 
 /* Slash Command Autocomplete Popover */
@@ -282,3 +307,28 @@
   font-size: 11px;
   color: var(--text-muted);
 }
+
+/* Responsive Flexibility */
+@media (max-width: 420px) {
+  .keyboard-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .input-dock-container {
+    padding: 8px 10px 10px 10px;
+    gap: 6px;
+  }
+  .dock-tools-row {
+    gap: 10px;
+  }
+  .input-box-wrapper {
+    padding: 8px 10px 6px 10px;
+  }
+  .btn-send-message {
+    width: 30px;
+    height: 30px;
+  }
+}
+

@@ -24,12 +24,18 @@ export class ModelModalController {
     });
 
     this.render();
-    store.subscribe((state) => {
+    const updateActiveModelUI = (state) => {
       const model = getModelById(state.activeModelId);
-      if (this.activeModelLabel) {
+      if (this.activeModelLabel && model) {
         this.activeModelLabel.textContent = model.shortName;
       }
-    });
+      const badge = this.openBtn?.querySelector(".model-logo-badge");
+      if (badge && model) {
+        badge.style.backgroundColor = model.color || "#6b21a8";
+      }
+    };
+    updateActiveModelUI(store.getState());
+    store.subscribe((state) => updateActiveModelUI(state));
   }
 
   open() {

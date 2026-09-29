@@ -7,15 +7,15 @@ const STORAGE_KEY = "echogpt_store_v1";
 
 const defaultState = {
   activeView: "viewChat",
-  activeModelId: "echogpt",
+  activeModelId: "gpt4o",
   enableWebSearch: false,
-  theme: "light",
+  theme: "dark",
   attachedContext: null, // e.g. { title, url, tokenCount, cleanText }
   currentConversationId: null,
   conversations: [],
   settings: {
-    theme: "light",
-    defaultModel: "echogpt",
+    theme: "dark",
+    defaultModel: "gpt4o",
     apiKeys: {
       openai: "",
       anthropic: "",

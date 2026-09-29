@@ -17,10 +17,10 @@ export const AI_MODELS = [
   },
   {
     id: "gpt4o",
-    name: "GPT-4o",
-    shortName: "GPT-4o",
+    name: "ChatGPT (GPT-4o)",
+    shortName: "ChatGPT",
     provider: "OpenAI",
-    color: "#10a37f",
+    color: "#7c3aed",
     description: "OpenAI's flagship multimodal model with vision, advanced mathematics, and deep instruction following.",
     tags: ["👁️ Vision", "🛠️ Tool Use", "⚡ Fast"],
     contextWindow: "128k",

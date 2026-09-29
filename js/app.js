@@ -17,6 +17,8 @@ import { SlashCommandsController, PromptEnhancer } from "./ui/slash-commands.js"
 document.addEventListener("DOMContentLoaded", async () => {
   // 1. Wait for state hydration
   await store.initPromise;
+  const currentTheme = store.getState().theme || "dark";
+  document.documentElement.setAttribute("data-theme", currentTheme);
 
   // 2. Instantiate controllers
   const chatCtrl = new ChatController();
