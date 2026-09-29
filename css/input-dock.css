@@ -1,0 +1,284 @@
+/* ==========================================================================
+   EchoGPT - Bottom Floating Input Dock & Prompt Cockpit
+   ========================================================================== */
+
+.input-dock-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 10px 14px 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: var(--shadow-dock);
+  z-index: 30;
+}
+
+/* Model Selector & Utility Row */
+.dock-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Model Selector Pill (Blue dot + Model name + Chevron) */
+.model-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background-color: var(--brand-light);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+}
+
+.model-pill-btn:hover {
+  background-color: #e0e7ff;
+  border-color: rgba(79, 70, 229, 0.4);
+}
+
+.model-pill-btn .indicator-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background-color: #3b82f6;
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.6);
+}
+
+.model-pill-btn .chevron-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--text-secondary);
+}
+
+/* Utility Tool Icons Row (Scissors, Paperclip, Book, @, Sparkles, User+) */
+.dock-tools-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.btn-dock-tool {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  position: relative;
+  transition: all 0.15s ease;
+}
+
+.btn-dock-tool svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-dock-tool:hover {
+  color: var(--brand-primary);
+  background-color: var(--bg-secondary);
+}
+
+.btn-dock-tool.active {
+  color: var(--brand-primary);
+  background-color: var(--brand-light);
+}
+
+/* Context Attached Chips (e.g. Current Tab Context) */
+.dock-context-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 52px;
+  overflow-y: auto;
+}
+
+.context-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  animation: fadeIn 0.15s ease;
+}
+
+.context-chip .chip-remove-btn {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.context-chip .chip-remove-btn:hover {
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Main Input Wrapper Box */
+.input-box-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 8px 10px 8px 12px;
+  transition: all 0.18s ease;
+}
+
+.input-box-wrapper:focus-within {
+  border-color: var(--brand-primary);
+  background-color: var(--bg-primary);
+  box-shadow: 0 0 0 2px var(--brand-glow);
+}
+
+/* Auto-resizing Textarea */
+.chat-textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  resize: none;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-primary);
+  min-height: 38px;
+  max-height: 130px;
+  padding: 2px 0 6px 0;
+  outline: none;
+}
+
+.chat-textarea::placeholder {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* Bottom Bar inside Input Box */
+.input-inner-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* Web Search Toggle Pill */
+.btn-web-search-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 11.5px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.btn-web-search-toggle svg {
+  width: 13px;
+  height: 13px;
+}
+
+.btn-web-search-toggle:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.btn-web-search-toggle.active {
+  background-color: #ecfdf5;
+  border-color: #10b981;
+  color: #059669;
+}
+
+/* Keyboard Hint */
+.keyboard-hint {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Circular Send Button */
+.btn-send-message {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background-color: var(--border-medium);
+  color: #ffffff;
+  flex-shrink: 0;
+  transition: all 0.18s ease;
+}
+
+.btn-send-message svg {
+  width: 15px;
+  height: 15px;
+  transform: translateX(1px);
+}
+
+.btn-send-message.ready {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.35);
+  cursor: pointer;
+}
+
+.btn-send-message.ready:hover {
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
+  transform: scale(1.05);
+}
+
+/* Slash Command Autocomplete Popover */
+.slash-popover {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 14px;
+  width: 260px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 100;
+  animation: fadeIn 0.15s ease;
+}
+
+.slash-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.slash-item:hover, .slash-item.selected {
+  background: var(--brand-light);
+  color: var(--brand-primary);
+}
+
+.slash-item .slash-cmd {
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.slash-item .slash-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+}

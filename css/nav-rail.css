@@ -1,0 +1,153 @@
+/* ==========================================================================
+   EchoGPT - Vertical Navigation Rail (Right Hand Side)
+   ========================================================================== */
+
+.nav-rail {
+  width: var(--nav-rail-width);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-secondary);
+  border-left: 1px solid var(--border-subtle);
+  padding: 10px 0 14px 0;
+  flex-shrink: 0;
+  user-select: none;
+  z-index: 20;
+}
+
+.rail-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.rail-group.top {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 160px);
+  scrollbar-width: none;
+}
+
+.rail-group.top::-webkit-scrollbar {
+  display: none;
+}
+
+.rail-group.bottom {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 8px;
+  gap: 6px;
+}
+
+/* Individual Rail Item */
+.rail-item {
+  width: 52px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 10.5px;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.18s ease;
+}
+
+.rail-item svg {
+  width: 19px;
+  height: 19px;
+  stroke-width: 1.8;
+  transition: transform 0.15s ease, stroke 0.15s ease;
+}
+
+.rail-item .rail-label {
+  font-size: 9.5px;
+  letter-spacing: -0.2px;
+  line-height: 1;
+}
+
+.rail-item:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+}
+
+.rail-item:hover svg {
+  transform: translateY(-1px);
+}
+
+/* Active State (Pill style matching screenshot) */
+.rail-item.active {
+  color: var(--brand-primary);
+  background-color: var(--brand-light);
+  font-weight: 600;
+}
+
+.rail-item.active svg {
+  stroke: var(--brand-primary);
+}
+
+/* Badge count for notifications/tools */
+.rail-badge {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  width: 7px;
+  height: 7px;
+  background-color: var(--brand-primary);
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--bg-secondary);
+}
+
+/* User Avatar Profile Pill */
+.rail-avatar-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+  box-shadow: 0 2px 5px rgba(79, 70, 229, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rail-avatar-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 3px 8px rgba(79, 70, 229, 0.45);
+}
+
+/* Tooltip on hover */
+.rail-item[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 66px;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: all 0.15s ease;
+  z-index: 50;
+  box-shadow: var(--shadow-md);
+}
+
+.rail-item:hover[data-tooltip]::after {
+  opacity: 1;
+  transform: translateX(0);
+}
