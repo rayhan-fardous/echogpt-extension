@@ -15,9 +15,18 @@ export class ModelModalController {
   }
 
   init() {
-    if (!this.openBtn || !this.overlay) return;
+    if (!this.overlay) return;
 
-    this.openBtn.addEventListener("click", () => this.open());
+    if (this.openBtn) {
+      this.openBtn.addEventListener("click", () => this.open());
+    }
+
+    // Direct bind to Write View model selector button
+    const writeModelSelectBtn = document.getElementById("btnWriteModelSelect");
+    if (writeModelSelectBtn) {
+      writeModelSelectBtn.addEventListener("click", () => this.open());
+    }
+
     this.closeBtn?.addEventListener("click", () => this.close());
     this.overlay.addEventListener("click", (e) => {
       if (e.target === this.overlay) this.close();
@@ -26,12 +35,37 @@ export class ModelModalController {
     this.render();
     const updateActiveModelUI = (state) => {
       const model = getModelById(state.activeModelId);
-      if (this.activeModelLabel && model) {
+      if (!model) return;
+
+      // Sync Chat View UI
+      if (this.activeModelLabel) {
         this.activeModelLabel.textContent = model.shortName;
       }
       const badge = this.openBtn?.querySelector(".model-logo-badge");
-      if (badge && model) {
+      if (badge) {
         badge.style.backgroundColor = model.color || "#6b21a8";
+      }
+
+      // Sync Write View UI
+      const writeModelName = document.getElementById("writeModelName");
+      if (writeModelName) {
+        writeModelName.textContent = model.shortName;
+      }
+
+      const writeModelDot = document.getElementById("writeModelDot");
+      if (writeModelDot) {
+        writeModelDot.style.backgroundColor = model.color || "#6366f1";
+        writeModelDot.style.boxShadow = `0 0 6px ${model.color || "#6366f1"}`;
+      }
+
+      const writeHeaderBadge = document.getElementById("writeHeaderModelBadge");
+      if (writeHeaderBadge) {
+        writeHeaderBadge.textContent = model.shortName;
+      }
+
+      const writeBtnBrand = document.getElementById("writeBtnModelBrand");
+      if (writeBtnBrand) {
+        writeBtnBrand.textContent = model.shortName;
       }
     };
     updateActiveModelUI(store.getState());
